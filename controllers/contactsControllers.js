@@ -50,11 +50,12 @@ export const createContact = async (req, res, next) => {
 export const updateContact = async (req, res, next) => {
   try {
     const { id } = req.params;
-    if (!(await getContactById(id))) {
+    const update = await editContact(req.body, id);
+
+    if (!update) {
       throw HttpError(404, "Not Found");
     }
-    const update = await editContact(req.body, id);
-    res.send(update);
+    res.status(200).send(update);
   } catch (error) {
     next(error);
   }
