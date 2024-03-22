@@ -41,6 +41,7 @@ export const registerUser = async (req, res, next) => {
 
     const verifyEmail = {
       to: email,
+      from: process.env.MAILTRAP_EMAIL,
       subject: "Verify email",
       html: `<a href="${BASE_URL}api/users/verify/${verificationToken}">Click verify email</a>`,
       text: `please open link to confirm tour registration ${BASE_URL}api/users/verify/${verificationToken}`,
@@ -146,6 +147,7 @@ export const refreshVerifyEmail = async (req, res, next) => {
 
     const verifyEmail = {
       to: email,
+      from: process.env.MAILTRAP_EMAIL,
       subject: "Verify email",
       html: `<a href="${BASE_URL}api/users/verify/${user.verificationToken}">Click verify email</a>`,
       text: `please open link to confirm tour registration ${BASE_URL}api/users/verify/${user.verificationToken}`,
